@@ -24,7 +24,7 @@ BG = sizeImg(BG, 1.5)
 width = BG.get_width()
 height = BG.get_height()
 dis = pygame.display.set_mode((width, height))
-num = myfont.render('0', 1, BLACK)
+
 run = True
 
 
@@ -64,25 +64,30 @@ def diceUI():
                 num = random.randint(1, 12)
             if d20.collidepoint(pos):
                 num = random.randint(1, 20)
-    if num == 0:
-        return myfont.render("0", 1, BLACK)
 
-    return myfont.render(str(num), 1, BLACK)
-
+    if num != 0:
+        return myfont.render(str(num), 1, BLACK)
+    return myfont.render(str(num), 1, WHITE)
 
 while run:
+
     clock.tick(60)
 
     dis.blit(BG, (0, 0))
+
     num = diceUI()
+
 
     dis.blit(num, (900, 10))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-            break
+
 
 
     pygame.display.update()
+    pygame.time.delay(500)
+
 pygame.quit()
+quit()
